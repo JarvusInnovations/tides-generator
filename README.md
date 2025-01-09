@@ -8,22 +8,31 @@ The `generate_vehicle_locations.py` script creates synthetic vehicle location da
 
 ### Prerequisites
 
-- Python 3.x
-- pandas library (`pip install pandas`)
+- Python 3.9 or higher
+- Poetry (Python package manager)
 - GTFS data files (routes.txt, trips.txt, stops.txt, stop_times.txt)
 
 ### Installation
 
 ```bash
+# Install Poetry if you haven't already
+curl -sSL https://install.python-poetry.org | python3 -
+
+# Clone and install project
 git clone https://github.com/your-username/tides-generator.git
 cd tides-generator
-pip install pandas
+poetry install
 ```
+
+This will create a virtual environment and install all required dependencies:
+
+- pandas: Data manipulation library
+- frictionless: Data validation toolkit
 
 ### Usage
 
 ```bash
-python3 generate_vehicle_locations.py <gtfs_path> --routes <route_ids> --start-date <start_date> --end-date <end_date> [--output <output_file>]
+poetry run generate-vehicle-locations <gtfs_path> --routes <route_ids> --start-date <start_date> --end-date <end_date> [--output <output_file>]
 ```
 
 Arguments:
@@ -38,10 +47,10 @@ Example:
 
 ```bash
 # Generate one day of data for route 1
-python3 generate_vehicle_locations.py septa-gtfs-bus --routes 1 --start-date 2024-01-01 --end-date 2024-01-01
+poetry run generate-vehicle-locations septa-gtfs-bus --routes 1 --start-date 2024-01-01 --end-date 2024-01-01
 
 # Generate a month of data for multiple routes
-python3 generate_vehicle_locations.py septa-gtfs-bus --routes 1,2,3 --start-date 2024-01-01 --end-date 2024-01-31 --output january_locations.csv
+poetry run generate-vehicle-locations septa-gtfs-bus --routes 1,2,3 --start-date 2024-01-01 --end-date 2024-01-31 --output january_locations.csv
 ```
 
 ### Output Format
@@ -79,21 +88,23 @@ The `validate_vehicle_locations.py` script validates generated files against the
 
 ### Prerequisites
 
-- frictionless library (`pip install frictionless`)
+The validator is included in the main package installation.
 
 ### Usage
 
 ```bash
-python3 validate_vehicle_locations.py <vehicle_locations.csv>
+poetry run validate-vehicle-locations <vehicle_locations.csv>
 ```
 
 Example:
+
 ```bash
 # Validate a generated file
-python3 validate_vehicle_locations.py test_vehicle_locations.csv
+poetry run validate-vehicle-locations test_vehicle_locations.csv
 ```
 
 The validator will check that:
+
 - All required fields are present
 - Field values match their specified types
 - Values are within allowed ranges

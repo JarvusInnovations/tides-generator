@@ -36,11 +36,14 @@ def validate_vehicle_locations(file_path: str) -> bool:
                         print(f"  Row: {error.rowNumber}")
         return False
 
-if __name__ == '__main__':
+def main():
     if len(sys.argv) != 2:
-        print("Usage: python3 validate_vehicle_locations.py <vehicle_locations.csv>")
+        print("Usage: validate-vehicle-locations <vehicle_locations.csv>")
         sys.exit(1)
 
     file_path = sys.argv[1]
     success = validate_vehicle_locations(file_path)
     sys.exit(0 if success else 1)
+
+if __name__ == '__main__':
+    main()

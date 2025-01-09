@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "tides-generator"
+version = "0.1.0"
+description = "Tools for generating synthetic TIDES-compliant data files from GTFS inputs"
+authors = ["Chris <chris@example.com>"]
+readme = "README.md"
+packages = [{include = "tides_generator"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^2.2.3"
+frictionless = "^5.18.0"
+
+[tool.poetry.scripts]
+generate-vehicle-locations = "tides_generator.cli.generate:main"
+validate-vehicle-locations = "tides_generator.cli.validate:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
